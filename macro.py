@@ -131,6 +131,96 @@ if __name__ == '__main__':
         
         #increase line number
         pq=pq+1
+
+
+    #function to create entry in parameter list      
+    def create_entry(line,entry):
+        k=0
+        # check if the parameter has value
+        if('=' in line):
+            # getting parameter name
+            while(line[k]!='='):
+                k+=1
+            p=line[0:k-1]
+            print("parameter : "+p)
+            # checking parameter name is valid
+            if(not(p.isidentifier())):
+                print("Invalid parameter name : "+p)
+                return(entry)
+            # getting parameter value
+            v=line[k+2:len(line)]
+            print("value : "+v)
+            #adding entry
+            item={}
+            item[p]=v
+            entry.append(item)
+        else:# if the parameter has value no value just add the parameter
+            p=line[0:len(line)]
+            if(not(p.isidentifier())):
+                print("Invalid parameter name : "+p)
+                return(entry)
+            print("parameter : "+p)
+            item={}
+            item[p]=None
+            entry.append(item)
+            
+        return(entry)
+
+    #function to check for parameters in each macro
+    def parameter(line):
+        entry=[]
+        j=0
+        #checking for ending bracket
+        if(line[-1]!=')'):
+            print("Ending bracket missing in : "+line)
+            return
+        # getting macro name
+        while(line[j]!=' '):
+            j=j+1
+        s=line[0:j]
+        print("macro : "+s)
+        #checking macro name is valid
+        if(not(s.isidentifier())):
+            print("Invalid macro name : "+s)
+            return
+        j=j+1
+        #checking starting bracket
+        if(line[j]!='('):
+            print("Opening bracket missing in : "+line)
+            return
+        j=j+2
+        # if no parameter then add none entry
+        if(line[j]==')' and j==len(line)-1):
+            parameter_name_table[s]=None
+        elif(',' not in line):# if single parameters add it
+            k=j
+            while(line[k]!=')'):
+                k+=1
+            lent=line[j:k-1]
+            entry=create_entry(lent,entry)
+        else:#multiple parameters present
+            print("need to check for multiple parameters")
+            k=j
+            # get each parameter, value and create entry
+            while(k<len(line)):
+                l=k
+                
+                while(line[l]!=',' and line[l]!=')' ):
+                    l=l+1
+                if(line[l]==')'):
+                    lent=line[k:l-1]
+                    entry=create_entry(lent,entry)
+                    break  
+                lent=line[k:l-1]
+                entry=create_entry(lent,entry)
+                k=l+2
+                
+               
+        print("Entries are:")
+        print(entry)
+        parameter_name_table[s]=entry
+        return
+    
     
     end_time = time.clock()
     #input_time = sum(time_list)
