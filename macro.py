@@ -1,3 +1,11 @@
+import time
+
+#def single_line_macro():
+    
+
+#def multi_line_macro():
+    
+
 
 #starting program
 if __name__ == '__main__':
@@ -73,7 +81,7 @@ if __name__ == '__main__':
     #print(lines)
     
     #tracks number of lines
-    pq = 0
+    pq = 1
     
     #flag to check when multi-line comments are started
     flag = False
@@ -109,10 +117,22 @@ if __name__ == '__main__':
             flag = True
             continue
         
+        #check for single line MACRO
+        elif( p[0] == "$macd" and p[1] != "..."):
+            single_line_macro(t, pq)
+        
+        #check for multi-line macro defination
+        elif( p[0] == "$macd" and p[1] == "..."):
+            multi_line_macro(t, pq)
+        
+        #conditional macro
+        elif( p[0] == "$if"):
+            conditional_macro(t, pq)
+        
         #increase line number
         pq=pq+1
     
     end_time = time.clock()
-    input_time = sum(time_list)
-    run_time = end_time - start_time - input_time
+    #input_time = sum(time_list)
+    run_time = end_time - start_time
     fp.close()
