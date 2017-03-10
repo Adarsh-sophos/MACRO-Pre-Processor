@@ -1,12 +1,27 @@
-$macd MAX 10
-
+$macd a 10
+$macd b 20
+$macd c 30
+$macd d 40
+$macd e 50
 void main()
 {
-	int a;
-	
-	a=5;
-	
+	$if a
+	Hello
+	aj
+
+	$elif b
+	sd=5;
+	p=8;
+
+	$elif c
 	printf("Enter MAX value: ");
+	scanf("%d");
+	--$else
+	--printf("%d", MAX);
+	haha	
+
+	$end
 	
-	printf("%d", MAX);
+	if(a==2)
 }
+

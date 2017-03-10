@@ -1,0 +1,47 @@
+$macd a 10
+$macd b 20
+--$macd c 30
+$macd d 40
+--$macd e 50
+--$macd f 60
+--$macd g 70
+$macd h 80
+void main()
+{
+
+
+
+					h is defined
+					i am in h
+
+
+
+
+
+	
+
+
+		
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	if(a==2)
+}
+

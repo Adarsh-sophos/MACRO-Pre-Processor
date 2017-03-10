@@ -1,42 +1,26 @@
 import time
+import settings as st
+from store_if import store_if
+from replace_if import replace_if
+ 
 
-#def single_line_macro():
-    
-
-#def multi_line_macro():
-    
+def single_line_macro(t, line):
+    st.macro_name_table[p[1]] = p[2]
+    st.macro_def_table[p[1]] = [line, line]
 
 
 #starting program
 if __name__ == '__main__':
-    
+        
     start_time = time.clock()
     
     #input file
-    fo = open("prog.c","r")
-    
-    #output file
-    fp = open("output.txt","w")
+    fo = open("prog1.txt","r")
     
     lines = fo.readlines()
-    prnt = lines
+    fo.close()
+    prnt = list(lines)
     i=0
-    
-    #stores macros name
-    macro_name_table = {}
-    
-    #this table is used while processing the defination of a macro
-    parameter_name_table = {}
-    
-    #keyword parameter default table
-    default_table = {}
-    
-    #stores defination of a macro
-    macro_def_table = {}
-    
-    #contains formal parameter values ( i.e. conatains actual parameter )
-    actual_parameter_table = {}
-    
     
     #remove any whitespaces before processing
     for q in lines:
@@ -78,7 +62,7 @@ if __name__ == '__main__':
                     j=j+2
         lines[lines.index(q)] = r
     
-    #print(lines)
+    #print(prnt)
     
     #tracks number of lines
     pq = 1
@@ -122,17 +106,52 @@ if __name__ == '__main__':
             single_line_macro(t, pq)
         
         #check for multi-line macro defination
-        elif( p[0] == "$macd" and p[1] == "..."):
-            multi_line_macro(t, pq)
+        #elif( p[0] == "$macd" and p[1] == "..."):
+        #    multi_line_macro(t, pq)
         
         #conditional macro
-        elif( p[0] == "$if"):
-            conditional_macro(t, pq)
+        #elif( p[0] == "$if"):
+        #    conditional_macro(t, pq)
         
         #increase line number
         pq=pq+1
+        
+    
+    
+    pq=1
+    
+    #replcing macros in input file
+    for t in lines:
+        
+        #create tokens
+        p = t.split()
+        
+        #if a empty line is encountered
+        if( t == "" ):
+            pq=pq+1
+            continue        
+        
+        if(p[0] == "$if"):
+            struct = []
+            struct.append({'$if':[pq-1]})
+            store_if(pq-1, lines, struct)
+            print(struct)
+            replace_if(pq-1, lines, prnt, struct)
+            break
+        pq += 1
+        
+        
+    
+    #output file
+    fp = open("output.txt","w")
+    
+    for s in prnt:
+        fp.write(s)
+    fp.close() 
+    
+    
     
     end_time = time.clock()
     #input_time = sum(time_list)
     run_time = end_time - start_time
-    fp.close()
+    print(st.macro_name_table)
