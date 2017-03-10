@@ -21,7 +21,7 @@ def create_entry(line,entry):
             k+=1
             
         p=line[0:k-1]
-        print("parameter : "+p)
+        #print("parameter : "+p)
         
         # checking parameter name is valid
         if(not(p.isidentifier())):
@@ -30,7 +30,7 @@ def create_entry(line,entry):
         
         # getting parameter value
         v=line[k+2:len(line)]
-        print("value : "+v)
+        #print("value : "+v)
         
         #adding entry
         item={}
@@ -43,7 +43,7 @@ def create_entry(line,entry):
         if(not(p.isidentifier())):
             print("Invalid parameter name : "+p)
             return(entry)
-        print("parameter : "+p)
+        #print("parameter : "+p)
         item={}
         item[p]=None
         entry.append(item)
@@ -66,7 +66,7 @@ def parameter(line):
     while(line[j]!=' '):
         j=j+1
     s=line[0:j]
-    print("macro : "+s)
+    #print("macro : "+s)
     
     #checking macro name is valid
     if(not(s.isidentifier())):
@@ -82,7 +82,7 @@ def parameter(line):
     
     # if no parameter then add none entry
     if(line[j]==')' and j==len(line)-1):
-        parameter_name_table[s]=None
+        st.parameter_name_table[s]=None
         
     # if single parameters add it
     elif(',' not in line):
@@ -94,7 +94,7 @@ def parameter(line):
         
     #multiple parameters present
     else:
-        print("need to check for multiple parameters")
+        #print("need to check for multiple parameters")
         k=j
         
         # get each parameter, value and create entry
@@ -112,9 +112,9 @@ def parameter(line):
             k=l+2
             
            
-    print("Entries are:")
-    print(entry)
-    parameter_name_table[s]=entry
+    #print("Entries are:")
+    #print(entry)
+    st.parameter_name_table[s]=entry
     return
 
 
@@ -247,8 +247,8 @@ if __name__ == '__main__':
             break
         pq += 1
         
-        
-    
+    parameter(lines[9])
+    print(st.parameter_name_table)
     #output file
     fp = open("output.txt","w")
     

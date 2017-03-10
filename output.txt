@@ -6,6 +6,10 @@ $macd d 40
 --$macd f 60
 --$macd g 70
 $macd h 80
+$macd ...
+sum(a=hek,b=78,c)
+print the sum
+$$
 void main()
 {
 
