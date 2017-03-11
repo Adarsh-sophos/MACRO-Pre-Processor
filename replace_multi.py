@@ -1,4 +1,5 @@
 import settings as st
+from tokens import create_tokens
 
 def replace_multi_line_macro(actual_par, i, prnt, key, lines):
     
@@ -26,6 +27,23 @@ def replace_multi_line_macro(actual_par, i, prnt, key, lines):
     #get the line range of macro
     def_r = st.macro_def_table.get(key)
     
+    if(len(def_r) == 1):
+        j = def_r[0]
+        #store the current line
+        b_end = prnt[j].index(")")
+        temp = prnt[j][b_end+2:]
+        
+        #check for keys in that line to be replaced
+        for key in actual_par:
+            if(key in lines[j].split()):
+                temp = temp.replace(key, actual_par[key])
+    
+        prnt.insert(i, idtn_str_1+temp)       
+        lines.insert(i,temp)
+        lines[i] = create_tokens(lines[i])
+               
+        return 0
+    
     #iterate over macro-defination line
     for j in range(def_r[0]+2, def_r[1]):
         
@@ -41,7 +59,9 @@ def replace_multi_line_macro(actual_par, i, prnt, key, lines):
             prnt.insert(i, idtn_str_1+temp)
         else:
             prnt.insert(i, idtn_str+temp)
-        lines.insert(i,"")
+        
+        lines.insert(i,temp)
+        lines[i] = create_tokens(lines[i])
         i=i+1
         k=k+1
     
@@ -105,3 +125,48 @@ def create_parameter_table(key, s):
     
     #return the formed parameter table
     return apt
+
+
+def nested_macro(m,n,lines,prnt):
+    
+    total_n = 0
+    i = m
+    k=0
+    
+    while(k<n):
+        
+        p = lines[i].split()
+        
+        #for every key check line
+        for key in st.macro_name_table:
+            
+            #if any key is found in that line
+            if(key in p):
+                
+                #find the index of key
+                k_i = p.index(key)
+                
+                #check if it's multi-line macro name used
+                if(len(p)-1>k_i and p[k_i+1] == "("):
+                    
+                    s_i = prnt[i].index("(")
+                    e_i = prnt[i].index(")", s_i)
+                    
+                    #get the actual parameter table for macro-call statement
+                    actual_par = create_parameter_table(key, prnt[i][s_i+1:e_i])
+                    
+                    #replace macro with its defination
+                    ab = replace_multi_line_macro(actual_par, i, prnt, key, lines)
+                    total_n += ab
+                    cd = nested_macro(m,ab+1,lines,prnt)
+                    total_n += cd
+                    i = i + cd
+                    i = i + ab + 1
+                
+                #else macro is single line
+                else:
+                    s_i = st.macro_def_table.get(key)[0]
+                    prnt[i] = prnt[i].replace(key, prnt[s_i][prnt[s_i].index(key)+1:-1])
+            k += 1
+    
+    return total_n

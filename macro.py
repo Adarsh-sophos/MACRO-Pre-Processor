@@ -7,6 +7,8 @@ from multi_line_macro import single_line_macro
 from multi_line_macro import parameter
 from replace_multi import replace_multi_line_macro
 from replace_multi import create_parameter_table
+from replace_multi import nested_macro
+from tokens import create_tokens
 
     
 
@@ -30,44 +32,14 @@ if __name__ == '__main__':
     
     
     #lexical analysis (Creating tokens)
-    for q in lines:
-        j=0
-        r=q
-        
-        for i in range(1,len(q)):
-            if( not q[i].isalnum() and q[i] != " " and q[i] != "_" and q[i] != "$" and (q[i] != "." or q[i-1].isidentifier())):
-                
-                #if( not q[i-1].isalnum() and q[i-1] != " " ):
-                #    continue
-                
-                if( i == len(q)-1 ):
-                    if( q[i-1] == " " ):
-                        continue
-                    else:
-                        r = r[:i+j]+" "+r[i+j:]
-                        j=j+1                    
-                
-                elif( q[i-1] == " " and q[i+1] == " " ):
-                    continue
-                
-                elif( q[i-1] == " " and q[i+1] != " " ):
-                    r = r[:i+j+1]+" "+r[i+j+1:]
-                    j=j+1
-                
-                elif( q[i-1] != " " and q[i+1] == " " ):
-                    r = r[:i+j]+" "+r[i+j:]
-                    j=j+1
-                
-                else:
-                    r = r[:i+j] + " " + r[i+j] + " " + r[i+j+1:]
-                    j=j+2
-        lines[lines.index(q)] = r
+    for q in lines:             
+        lines[lines.index(q)] = create_tokens(q)
     
     #print(prnt)   
     
     
     
-    '''************************ stores all macro defination ************************'''
+    '''************************ stores all macros defination ************************'''
     
     #tracks number of lines
     pq = 1
@@ -89,6 +61,7 @@ if __name__ == '__main__':
         #check the ending of comment
         if( flag ):
             prnt[pq-1] = ""
+            lines[pq-1] = ""
             if( len(p)>1 and p[-2] == '#' and p[-1] == '>' ):
                 flag = False
                 pq+=1
@@ -99,19 +72,21 @@ if __name__ == '__main__':
         #check for single line comment
         elif( p[0] == '-' and p[1] == '-' ):
             prnt[pq-1] = ""
+            lines[pq-1] = ""
             pq=pq+1
             continue
         
         #check for starting of multi-line comment
         elif( p[0] == '<' and p[1] == '#' ):
             prnt[pq-1] = ""
+            lines[pq-1] = ""
             pq=pq+1
             flag = True
             continue
         
         #check for single line MACRO
         elif( p[0] == "$macd" and p[1] != "..."):
-            single_line_macro(t, lines.index(t))
+            single_line_macro(t, pq-1, prnt)
         
         #check for multi-line macro defination
         elif( p[0] == "$macd" and p[1] == "..."):
@@ -174,33 +149,8 @@ if __name__ == '__main__':
         
         #replace single and multi-line macro
         else:
-            
-            #for every key check line
-            for key in st.macro_name_table:
-                
-                #if any key is found in that line
-                if(key in p):
-                    
-                    #find the index of key
-                    k_i = p.index(key)
-                    
-                    #check if it's multi-line macro name used
-                    if(len(p)-1>k_i and p[k_i+1] == "("):
-                        
-                        s_i = prnt[pq].index("(")
-                        e_i = prnt[pq].index(")", s_i)
-                        
-                        #get the actual parameter table for macro-call statement
-                        actual_par = create_parameter_table(key, prnt[pq][s_i+1:e_i])
-                        
-                        #replace macro with its defination
-                        pq = replace_multi_line_macro(actual_par, pq, prnt, key, lines) + pq + 1
-                        continue
-                    
-                    #else macro is single line
-                    else:
-                        s_i = st.macro_def_table.get(key)[0]
-                        prnt[pq] = prnt[pq].replace(key, prnt[s_i][prnt[s_i].index(key)+1:-1])
+            pq = nested_macro(pq,1,lines,prnt) + pq + 1
+            continue
         
         #increase line number
         pq += 1

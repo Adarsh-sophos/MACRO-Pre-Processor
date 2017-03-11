@@ -136,7 +136,7 @@ def parameter(line):
 
 
 # function to check and create single line macro
-def single_line_macro(t,pq):
+def single_line_macro(t,pq, prnt):
     p=t.split()
     
     # creating parameter definition table
@@ -147,18 +147,18 @@ def single_line_macro(t,pq):
         if(mname in st.macro_name_table):
             printf("Macro already defined : "+mname)
         else:
-            st.macro_name_table[mname]=[[1],[0,0]]
-            st.macro_def_table[mname]=[pq]
-            st.parameter_name_table[mname]=p[2]
+            st.macro_name_table[mname] = [[1],[0,0]]
+            st.macro_def_table[mname] = [pq]
+            st.parameter_name_table[mname] = prnt[pq][prnt[pq].index(p[2]):-1]
             
     # macro with parameter        
     else:
-        k=2
-        while(t[k]!=')'):
-            k+=1
-        tnew=t[1:k+1]
+        s_i = t.index(p[1])
+        e_i = t.index(")", s_i+1)
+        tnew=t[s_i:e_i+1]
         
         # creating parameter definition table
+        #print(tnew)
         mname=parameter(tnew)
         
         # check for any macro definition error

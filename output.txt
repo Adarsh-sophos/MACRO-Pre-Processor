@@ -5,12 +5,14 @@
 
 
 
+
+
 void main()
 {
 	int a,b,c,d;
 		
-	a = 9 = 2 + 34;
-	    9 = 2 + 9;
+	a = print the sumdad
+	    9+34
 	
 	b = hello 5
 	    you are undefined
@@ -18,7 +20,7 @@ void main()
 
 	c = 5 + 1 + 91
 
-	d = print the sum
+	d = print the sumdad
 	    helo+newone
 
 	e = 3 + 1 + 91
@@ -26,5 +28,7 @@ void main()
 	f =  10
 
 	g =  printf("%d",a);
+
+	h = 3>2?3:2
 }
 

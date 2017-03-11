@@ -3,11 +3,12 @@ $macd B printf("%d",a);
 
 $macd ...
 sum(a,b,c)
-c = a + b;
-c = a + c;
+SUM(a,b,c)
 $$
 
---$macd C 30
+$macd SUM(a,b,c) sum3(c,b)
+
+$macd CDE 30 men
 --$macd D 40
 
 $macd ...
@@ -22,6 +23,8 @@ $$
 --$macd g 70
 $macd H 80
 
+$macd MAX(x,y) x>y?x:y
+
 $macd ...
 sum2(a, b=1, c=91, d=17)
 a + b + c
@@ -29,7 +32,7 @@ $$
 
 $macd ...
 sum3(a=helo,b=newone)
-print the sum
+print the sumdad
 a+b
 $$
 
@@ -50,5 +53,7 @@ void main()
 	f = A
 
 	g = B
+
+	h = MAX(y=2,x=3)
 }
 
