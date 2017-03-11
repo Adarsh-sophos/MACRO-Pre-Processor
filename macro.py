@@ -3,10 +3,7 @@ import settings as st
 from store_if import store_if
 from replace_if import replace_if
 from multi_line_macro import multi_line_macro
-
-def single_line_macro(t, line):
-    st.macro_name_table[p[1]] = p[2]
-    st.macro_def_table[p[1]] = [line, line]
+from multi_line_macro import single_line_macro
 
 #starting program
 if __name__ == '__main__':
@@ -102,12 +99,11 @@ if __name__ == '__main__':
         
         #check for single line MACRO
         elif( p[0] == "$macd" and p[1] != "..."):
-            single_line_macro(t, pq)
+            single_line_macro(t, lines.index(t))
         
         #check for multi-line macro defination
-        #elif( p[0] == "$macd" and p[1] == "..."):
-            #x=lines.index(t)
-            #multi_line_macro(lines,t,x)
+        elif( p[0] == "$macd" and p[1] == "..."):
+            multi_line_macro(lines,t,pq-1)
         
         #conditional macro
         #elif( p[0] == "$if"):
@@ -138,10 +134,6 @@ if __name__ == '__main__':
             break
         pq += 1
         
-    multi_line_macro(lines,lines[2],2)
-    multi_line_macro(lines,lines[8],8)
-    multi_line_macro(lines,lines[16],16)
-    multi_line_macro(lines,lines[20],20)
     print("macro name table : ")
     print(st.macro_name_table)
     print("macro def table : ")
