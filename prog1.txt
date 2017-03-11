@@ -1,13 +1,25 @@
 $macd a 10
 $macd b 20
+$macd ...
+sum(a=hek,b=78,c)
+print the sum
+$$
 --$macd c 30
 $macd d 40
+$macd ...
+sum2(a,b,c)
+print the sum
+$$
 --$macd e 50
 --$macd f 60
 --$macd g 70
 $macd h 80
 $macd ...
-sum(a=hek,b=78,c)
+sum(a=hek,b=90,c)
+print the sum
+$$
+$macd ...
+sum(a=helo,b=newone)
 print the sum
 $$
 void main()

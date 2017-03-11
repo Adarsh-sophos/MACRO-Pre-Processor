@@ -2,121 +2,11 @@ import time
 import settings as st
 from store_if import store_if
 from replace_if import replace_if
- 
+from multi_line_macro import multi_line_macro
 
 def single_line_macro(t, line):
     st.macro_name_table[p[1]] = p[2]
     st.macro_def_table[p[1]] = [line, line]
-
-
-#function to create entry in parameter list      
-def create_entry(line,entry):
-    
-    k=0
-    # check if the parameter has value
-    if('=' in line):
-        
-        # getting parameter name
-        while(line[k]!='='):
-            k+=1
-            
-        p=line[0:k-1]
-        #print("parameter : "+p)
-        
-        # checking parameter name is valid
-        if(not(p.isidentifier())):
-            print("Invalid parameter name : "+p)
-            return(entry)
-        
-        # getting parameter value
-        v=line[k+2:len(line)]
-        #print("value : "+v)
-        
-        #adding entry
-        item={}
-        item[p]=v
-        entry.append(item)
-        
-    # if the parameter has value no value just add the parameter
-    else:
-        p=line[0:len(line)]
-        if(not(p.isidentifier())):
-            print("Invalid parameter name : "+p)
-            return(entry)
-        #print("parameter : "+p)
-        item={}
-        item[p]=None
-        entry.append(item)
-        
-    return(entry)
-
-
-#function to check for parameters in each macro
-def parameter(line):
-    
-    entry=[]
-    j=0
-    
-    #checking for ending bracket
-    if(line[-1]!=')'):
-        print("Ending bracket missing in : "+line)
-        return
-    
-    # getting macro name
-    while(line[j]!=' '):
-        j=j+1
-    s=line[0:j]
-    #print("macro : "+s)
-    
-    #checking macro name is valid
-    if(not(s.isidentifier())):
-        print("Invalid macro name : "+s)
-        return
-    j=j+1
-    
-    #checking starting bracket
-    if(line[j]!='('):
-        print("Opening bracket missing in : "+line)
-        return
-    j=j+2
-    
-    # if no parameter then add none entry
-    if(line[j]==')' and j==len(line)-1):
-        st.parameter_name_table[s]=None
-        
-    # if single parameters add it
-    elif(',' not in line):
-        k=j
-        while(line[k]!=')'):
-            k+=1
-        lent=line[j:k-1]
-        entry=create_entry(lent,entry)
-        
-    #multiple parameters present
-    else:
-        #print("need to check for multiple parameters")
-        k=j
-        
-        # get each parameter, value and create entry
-        while(k<len(line)):
-            l=k
-            
-            while(line[l]!=',' and line[l]!=')' ):
-                l=l+1
-            if(line[l]==')'):
-                lent=line[k:l-1]
-                entry=create_entry(lent,entry)
-                break  
-            lent=line[k:l-1]
-            entry=create_entry(lent,entry)
-            k=l+2
-            
-           
-    #print("Entries are:")
-    #print(entry)
-    st.parameter_name_table[s]=entry
-    return
-
 
 #starting program
 if __name__ == '__main__':
@@ -143,7 +33,7 @@ if __name__ == '__main__':
         r=q
         
         for i in range(1,len(q)):
-            if( not q[i].isalnum() and q[i] != " " and q[i] != "_" and (q[i] != "." or q[i-1].isidentifier())):
+            if( not q[i].isalnum() and q[i] != " " and q[i] != "_" and q[i] != "$" and (q[i] != "." or q[i-1].isidentifier())):
                 
                 #if( not q[i-1].isalnum() and q[i-1] != " " ):
                 #    continue
@@ -216,7 +106,8 @@ if __name__ == '__main__':
         
         #check for multi-line macro defination
         #elif( p[0] == "$macd" and p[1] == "..."):
-        #    multi_line_macro(t, pq)
+            #x=lines.index(t)
+            #multi_line_macro(lines,t,x)
         
         #conditional macro
         #elif( p[0] == "$if"):
@@ -226,7 +117,7 @@ if __name__ == '__main__':
         pq=pq+1
 
     pq=1
-    
+
     #replcing macros in input file
     for t in lines:
         
@@ -247,7 +138,15 @@ if __name__ == '__main__':
             break
         pq += 1
         
-    parameter(lines[9])
+    multi_line_macro(lines,lines[2],2)
+    multi_line_macro(lines,lines[8],8)
+    multi_line_macro(lines,lines[16],16)
+    multi_line_macro(lines,lines[20],20)
+    print("macro name table : ")
+    print(st.macro_name_table)
+    print("macro def table : ")
+    print(st.macro_def_table)
+    print("parameter name table : " )
     print(st.parameter_name_table)
     #output file
     fp = open("output.txt","w")
@@ -259,5 +158,4 @@ if __name__ == '__main__':
     end_time = time.clock()
     #input_time = sum(time_list)
     run_time = end_time - start_time
-    print(st.macro_name_table)
     fp.close()
