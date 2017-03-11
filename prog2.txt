@@ -1,0 +1,54 @@
+$macd A 10
+$macd B printf("%d",a);
+
+$macd ...
+sum(a,b,c)
+c = a + b;
+c = a + c;
+$$
+
+--$macd C 30
+--$macd D 40
+
+$macd ...
+sum1(a,b,c=5)
+hello c
+you are undefined
+a + b + c
+$$
+
+--$macd e 50
+--$macd f 60
+--$macd g 70
+$macd H 80
+
+$macd ...
+sum2(a, b=1, c=91, d=17)
+a + b + c
+$$
+
+$macd ...
+sum3(a=helo,b=newone)
+print the sum
+a+b
+$$
+
+void main()
+{
+	int a,b,c,d;
+		
+	a = sum(2, 34, 9)
+	
+	b = sum1(1,8)
+
+	c = sum2(5)
+
+	d = sum3()
+
+	e = sum2(d=18, a=3)
+
+	f = A
+
+	g = B
+}
+

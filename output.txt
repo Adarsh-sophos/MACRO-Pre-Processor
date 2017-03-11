@@ -1,51 +1,30 @@
-$macd a 10
-$macd b 20
---$macd c 30
-$macd d 40
---$macd e 50
---$macd f 60
---$macd g 70
-$macd h 80
-$macd ...
-sum(a=hek,b=78,c)
-print the sum
-$$
+
+
+
+
+
+
+
 void main()
 {
-
-
-
-					h is defined
-					i am in h
-
-
-
-
-
-	
-
-
+	int a,b,c,d;
 		
-
-
-
-
-
-
-
+	a = 9 = 2 + 34;
+	    9 = 2 + 9;
 	
+	b = hello 5
+	    you are undefined
+	    1 + 8 + 5
 
+	c = 5 + 1 + 91
 
+	d = print the sum
+	    helo+newone
 
+	e = 3 + 1 + 91
 
+	f =  10
 
-
-
-
-
-
-
-
-	if(a==2)
+	g =  printf("%d",a);
 }
 

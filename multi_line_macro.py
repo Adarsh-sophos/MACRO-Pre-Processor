@@ -44,6 +44,8 @@ def create_entry(line,entry,pos_para,key_para):
         
     return(entry,pos_para,key_para)
 
+
+
 #function to check for parameters in each macro
 def parameter(line):
     
@@ -118,8 +120,7 @@ def parameter(line):
             key_para=ret[2]
             
             k=l+2
-            
-           
+    
     #print("Entries are:")
     #print(entry)
     if(s in st.parameter_name_table):
@@ -132,11 +133,16 @@ def parameter(line):
         st.parameter_name_table[s]=entry
     return(s,[pos_para,key_para])
 
+
+
 # function to check and create single line macro
 def single_line_macro(t,pq):
     p=t.split()
+    
     # creating parameter definition table
-    if(p[2]!='('):# macro without parameter
+    
+    # macro without parameter
+    if(p[2]!='('):
         mname=p[1]
         if(mname in st.macro_name_table):
             printf("Macro already defined : "+mname)
@@ -144,17 +150,23 @@ def single_line_macro(t,pq):
             st.macro_name_table[mname]=[[1],[0,0]]
             st.macro_def_table[mname]=[pq]
             st.parameter_name_table[mname]=p[2]
-    else:# macro with parameter
+            
+    # macro with parameter        
+    else:
         k=2
         while(t[k]!=')'):
             k+=1
         tnew=t[1:k+1]
+        
         # creating parameter definition table
         mname=parameter(tnew)
+        
         # check for any macro definition error
         if(mname[0] is '*'):
+            
             #print("Error in macro definition")
             return '*'
+        
         #if no error add macro in list
         if(mname[0] in st.macro_name_table):
             x=st.macro_name_table[mname[0]][0][0]+1
@@ -167,18 +179,24 @@ def single_line_macro(t,pq):
             st.macro_def_table[mname[0]]=[pq]
     return(pq)
 
+
+
 # function to check and create multi line macro definition
 def multi_line_macro(lines,t,pq):
     
     k=pq
     pq=pq+1
+    
     # creating parameter definition table
     mname=parameter(lines[pq])
+    
     # check for any macro definition error
     if(mname[0] is '*'):
+        
         #print("Error in macro definition")
         return '*'
     pq=pq+1
+    
     #if no error add macro in list
     while(lines[pq]!="$$"):
         pq=pq+1
