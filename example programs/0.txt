@@ -3,18 +3,20 @@
 	#>
 
 $macd ...
-sum(a,b,c=1,d=2,e=3)
-print(“This sum has 5 parameters : ”+ a + b + c + d + e);
-$$
-$macd ...
-sum( )
-print(“This sum has no parameters”);
-$$
-$macd ...
-sum(a,b,c)
-print(“This sum has 3 parameters :” + a + b + c);
+SUM(a,b,c=1,d=2,e=3)
+print("This SUM has 5 parameters : "+ a + b + c + d + e);
 $$
 
-sum(10,20,30,40)
-sum()
-sum(10,20,30)
+$macd ...
+SUM()
+print("This sum has no parameters");
+$$
+
+$macd ...
+SUM(a,b,c)
+print("This sum has 3 parameters :" + a + b + c);
+$$
+
+SUM(10,20,30,40)
+SUM()
+SUM(10,20,30)

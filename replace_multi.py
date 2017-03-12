@@ -114,15 +114,27 @@ def create_parameter_table(key, s):
                 key_arg+=1
             else:
                 pos_arg+=1
-
+                
+    flag_a = False
     name_tab = st.macro_name_table.get(key)
     def_n = name_tab[0][0]
     if(def_n > 1):
         for iq in range(1,def_n+1):
             if(name_tab[iq][0] == pos_arg):
                 name_index = iq
+                flag_a = True
+        if(not flag_a):
+            for iq in range(1,def_n+1):
+                if(name_tab[iq][0] + name_tab[iq][1] >= pos_arg+key_arg):
+                    name_index = iq
+                    flag_a = True
     else:
         name_index = 1
+        flag_a = True
+    
+    if(not flag_a):
+        print("Error in parameter passing "+s)
+        return {}
     
     #check for number of positional arguments
     n_of_pos_par = st.macro_name_table.get(key)[name_index][0]   

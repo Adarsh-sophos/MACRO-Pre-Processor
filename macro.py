@@ -95,7 +95,7 @@ if __name__ == '__main__':
         #increase line number
         pq=pq+1
 
-
+    
 
     '''************************ Replace all macros used ************************'''
     
@@ -163,7 +163,7 @@ if __name__ == '__main__':
     pq=0
     
     #flag to check when multi line macro defination starts and ends
-    multi_flag = False
+    kpi = 0
     
     #replcing macros in input file
     while(pq < len(lines)):
@@ -177,11 +177,14 @@ if __name__ == '__main__':
             continue
         
         #check the ending of comment
-        if( multi_flag ):
+        if( kpi>0 ):
             prnt[pq] = ""
             if( p[0] == "$$"):
-                multi_flag = False
+                kpi -= 1
                 pq+=1
+            elif( len(p) > 1 and p[0] == "$macd" and p[1] == "..."):
+                kpi += 1
+                pq+=1            
             else:
                 pq+=1
             continue        
@@ -193,6 +196,7 @@ if __name__ == '__main__':
         
         #replace multi-line macro with ""
         elif(len(p) > 1 and p[0] == "$macd" and p[1] == "..."):
+            kpi += 1
             prnt[pq] = ""
             pq=pq+1
             multi_flag = True
