@@ -1,0 +1,8 @@
+$macd ...
+sum1(a,b,c=5)
+print(“sum is”)
+x=a + b + c
+print(x)
+$$
+print(“Program to calculate sum of three numbers “ )
+sum1(10 , 27  )

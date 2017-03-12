@@ -1,0 +1,9 @@
+$macd e 50
+--$macd d 60
+$if d			
+print(“d  is defined “)
+$elif e
+print(“e  is defined “)
+$else
+Print(“Both d and e are not defined “)		
+$end

@@ -5,6 +5,7 @@ import settings as st
 #function to create entry in parameter list      
 def create_entry(line,entry,pos_para,key_para):
     
+    #print(line)
     k=0
     # check if the parameter has value
     if(line==""):
@@ -53,6 +54,7 @@ def parameter(line):
     
     entry=[]
     j=0
+    flag=0
     pos_para=0
     key_para=0
     #checking for ending bracket
@@ -83,8 +85,8 @@ def parameter(line):
         if(s in st.parameter_name_table):
             if(st.parameter_name_table[s]== None):
                 print("Macro already defined")
-                return '*'
-        st.parameter_name_table[s]=None
+                flag=1
+        #st.parameter_name_table[s]=None
         
     # if single parameters add it
     elif(',' not in line):
@@ -126,13 +128,19 @@ def parameter(line):
     #print("Entries are:")
     #print(entry)
     if(s in st.parameter_name_table):
-        if(len(st.parameter_name_table[s])==len(entry)):
+        if(st.parameter_name_table[s]==None):
+            print("Macro already defined : "+s)
+            return '*'
+        elif(len(st.parameter_name_table[s])==len(entry)):
             print("Macro already defined : "+s)
             return '*'
         else:
             st.parameter_name_table[s].append(entry)
     else:
-        st.parameter_name_table[s]=[entry]
+        if(flag==1):
+            st.parameter_name_table[s]=None
+        else:
+            st.parameter_name_table[s]=[entry]
     return(s,[pos_para,key_para])
 
 
@@ -188,6 +196,7 @@ def multi_line_macro(lines,t,pq):
     pq=pq+1
     
     # creating parameter definition table
+    #print(lines[pq])
     mname=parameter(lines[pq])
     
     # check for any macro definition error

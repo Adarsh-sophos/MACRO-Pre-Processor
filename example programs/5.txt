@@ -1,0 +1,10 @@
+#include<stdio.h>
+$macd ...
+	sum(c, k, a=helo, b=newone)
+	printf("The sum is ");
+	int x = a+b+c+k;
+$$
+void main()	
+{
+	sum(10,20,30)
+	printf("%d", x);	}

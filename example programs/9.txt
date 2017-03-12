@@ -1,0 +1,20 @@
+$macd  ... 
+stmt(  )
+<#	 a: dd 6  
+	commented so not replaced   #>
+stm : db "a=%d", 10, 0 
+$$
+SECTION .data
+stmt(  )
+SECTION .text
+extern printf
+global main
+main:
+	push ebp
+	mov ebp,esp
+	push stm
+	call printf
+	add esp,8
+	mov esp, ebp
+	pop ebp
+ret

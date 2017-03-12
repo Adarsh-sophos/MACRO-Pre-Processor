@@ -1,0 +1,20 @@
+$macd   g test
+SECTION .data
+$if g
+	Greet:  db “Hello !!”,10,0
+$else
+	Greet:  db  “No greeting”,10,0
+$end
+
+SECTION .text
+extern printf
+global main
+main:
+	push ebp
+	mov ebp,esp
+	push stm
+	call printf
+	add esp,4
+	mov esp, ebp
+	pop ebp
+ret

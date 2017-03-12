@@ -1,0 +1,3 @@
+print(“The two defined macros will be called here “)
+print(“The v20lue of p20r20meter is “ + 20)
+print(“Macro 10 has value “+10)

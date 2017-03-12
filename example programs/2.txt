@@ -1,0 +1,7 @@
+#include<stdio.h>
+$macd MAX(x=0,y) x>y?x:y;
+$macd hello printf(“lets greet our user !! Hello user . “); 
+void main(){
+hello
+int Maximum=MAX(10,20)
+}

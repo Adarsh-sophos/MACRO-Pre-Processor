@@ -1,0 +1,5 @@
+<#    this example uses 
+	A multi line 
+comment	#>
+$macd  A 10
+print(“Macro has value “+A)

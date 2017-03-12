@@ -1,0 +1,4 @@
+print(“Program to calculate sum of three numbers “ )
+print(“sum is”)
+x=10 + 27 + 5
+print(x)

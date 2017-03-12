@@ -1,0 +1,6 @@
+#include<stdio.h>
+void main()	
+{
+	printf("The sum is ");
+	int x = 30+newone+10+20;
+	printf("%d", x);	}
