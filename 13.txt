@@ -1,0 +1,20 @@
+<# 	Here same macro ‘sum’ is defined 
+	multiple times 	with different number of parameters
+	#>
+
+$macd ...
+sum(a,b,c=1,d=2,e=3)
+print(“This sum has 5 parameters : ”+ a + b + c + d + e);
+$$
+$macd ...
+sum( )
+print(“This sum has no parameters”);
+$$
+$macd ...
+sum(a,b,c)
+print(“This sum has 3 parameters :” + a + b + c);
+$$
+
+sum(10,20,30,40)
+sum()
+sum(10,20,30)

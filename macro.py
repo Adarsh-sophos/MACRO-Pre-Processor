@@ -18,7 +18,7 @@ if __name__ == '__main__':
     start_time = time.clock()
     
     #input file
-    fo = open("programs/prog2.txt","r")
+    fo = open("15.txt","r")
     
     lines = fo.readlines()
     fo.close()
@@ -212,7 +212,7 @@ if __name__ == '__main__':
     print("parameter name table : " )
     print(st.parameter_name_table)
     #output file
-    fp = open("programs/output.txt","w")
+    fp = open("15o.txt","w")
     
     for s in prnt:
         fp.write(s)

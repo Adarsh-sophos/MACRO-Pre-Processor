@@ -1,0 +1,4 @@
+int x=a+b+c;
+$$
+printf(“this is nested macro definition “);
+int x=5 + 10 + 2+6;
