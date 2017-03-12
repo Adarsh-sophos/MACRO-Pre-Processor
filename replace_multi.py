@@ -48,7 +48,7 @@ def replace_multi_line_macro(actual_par, i, prnt, key, lines, n_index):
     for j in range(def_r[0]+2, def_r[1]):
         
         #store the current line
-        temp = prnt[j]
+        temp = prnt[j].lstrip()
         
         #check for keys in that line to be replaced
         for key in actual_par:
@@ -155,6 +155,13 @@ def nested_macro(m,n,lines,prnt):
         
         p = lines[i].split()
         
+        try:
+            c_s = p.index('"')
+            c_e = p.index('"', c_s+1)
+            p = p[:c_s] + p[c_e+1:]
+        except:
+            pass
+        
         #for every key check line
         for key in st.macro_name_table:
             
@@ -184,7 +191,7 @@ def nested_macro(m,n,lines,prnt):
                 #else macro is single line
                 else:
                     s_i = st.macro_def_table.get(key)[0][0]
-                    prnt[i] = prnt[i].replace(key, prnt[s_i][prnt[s_i].index(key)+1:-1])
+                    prnt[i] = prnt[i].replace(key, st.parameter_name_table.get(key))
             k += 1
     
     return total_n
