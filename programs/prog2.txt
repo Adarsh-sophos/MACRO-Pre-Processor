@@ -1,5 +1,5 @@
 $macd A 10
-$macd B(a) printf("%d",a);
+$macd B(a) printf("B a A sum %d",a);
 
 $macd ...
 sum(a,b,c)

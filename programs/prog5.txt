@@ -1,10 +1,4 @@
-$macd ...
-	sum(c, k, a=helo, b=newone)
-		printf("The sum is ");
-		int x = a+b+c+k
-$$
-void main()	
-{
-	sum(10,20,30)
-	printf("%d", x);
-}
+$macd A 10
+$macd B(a) print("The value of parameter a and a is "+ a)
+B(20)
+print("Macro A has value ", A)

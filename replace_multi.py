@@ -1,5 +1,6 @@
 import settings as st
 from tokens import create_tokens
+import re
 
 def replace_multi_line_macro(actual_par, i, prnt, key, lines, n_index):
     
@@ -36,7 +37,20 @@ def replace_multi_line_macro(actual_par, i, prnt, key, lines, n_index):
         #check for keys in that line to be replaced
         for key in actual_par:
             if(key in lines[j].split()):
-                temp = temp.replace(key, actual_par[key])
+                pattern = '\\b'+key+'\\b'
+                try:
+                    s_c = temp.index('"')
+                    e_c = temp.index('"', s_c+1)
+                except:
+                    temp = re.sub(pattern,actual_par[key],temp)
+                else:
+                    first = temp[:s_c]
+                    second = temp[s_c:e_c+1]
+                    third  = temp[e_c+1:]
+                    temp_1 = re.sub(pattern,actual_par[key],first)
+                    temp_2 = re.sub(pattern,actual_par[key],third)
+                    temp = temp_1 + second + temp_2
+                #temp = temp.replace(key, actual_par[key])
     
         prnt.insert(i, idtn_str_1+temp)       
         lines.insert(i,temp)
@@ -53,7 +67,20 @@ def replace_multi_line_macro(actual_par, i, prnt, key, lines, n_index):
         #check for keys in that line to be replaced
         for key in actual_par:
             if(key in lines[j].split()):
-                temp = temp.replace(key, actual_par[key])
+                pattern = '\\b'+key+'\\b'
+                try:
+                    s_c = temp.index('"')
+                    e_c = temp.index('"', s_c+1)
+                except:
+                    temp = re.sub(pattern,actual_par[key],temp)
+                else:
+                    first = temp[:s_c]
+                    second = temp[s_c:e_c+1]
+                    third  = temp[e_c+1:]
+                    temp_1 = re.sub(pattern,actual_par[key],first)
+                    temp_2 = re.sub(pattern,actual_par[key],third)
+                    temp = temp_1 + second + temp_2                
+                #temp = temp.replace(key, actual_par[key])
         
         if(k==1):
             prnt.insert(i, idtn_str_1+temp)
@@ -172,13 +199,19 @@ def nested_macro(m,n,lines,prnt):
                 k_i = p.index(key)
                 
                 #check if it's multi-line macro name used
-                if(len(p)-1>k_i and p[k_i+1] == "("):
+                def_rn = st.macro_def_table.get(key)[0]
+                
+                if(len(def_rn)==2 or len(p)-1>k_i and p[k_i+1] == "("):
                     
-                    s_i = prnt[i].index("(")
-                    e_i = prnt[i].index(")", s_i)
+                    try:
+                        s_i = prnt[i].index("(")
+                        e_i = prnt[i].index(")", s_i)
+                    except:
+                        actual_par, n_index = create_parameter_table(key, "")
+                    else:
                     
-                    #get the actual parameter table for macro-call statement
-                    actual_par, n_index = create_parameter_table(key, prnt[i][s_i+1:e_i])
+                        #get the actual parameter table for macro-call statement
+                        actual_par, n_index = create_parameter_table(key, prnt[i][s_i+1:e_i])
                     
                     #replace macro with its defination
                     ab = replace_multi_line_macro(actual_par, i, prnt, key, lines, n_index)
@@ -190,8 +223,20 @@ def nested_macro(m,n,lines,prnt):
                 
                 #else macro is single line
                 else:
-                    s_i = st.macro_def_table.get(key)[0][0]
-                    prnt[i] = prnt[i].replace(key, st.parameter_name_table.get(key))
+                    pattern = '\\b'+key+'\\b'
+                    try:
+                        s_c = prnt[i].index('"')
+                        e_c = prnt[i].index('"', s_c+1)
+                    except:
+                        prnt[i] = re.sub(pattern,st.parameter_name_table.get(key),prnt[i])
+                    else:
+                        first = prnt[i][:s_c]
+                        second = prnt[i][s_c:e_c+1]
+                        third  = prnt[i][e_c+1:]
+                        temp_1 = re.sub(pattern,st.parameter_name_table.get(key),first)
+                        temp_2 = re.sub(pattern,st.parameter_name_table.get(key),third)
+                        prnt[i] = temp_1 + second + temp_2
+                    #prnt[i] = prnt[i].replace(key, st.parameter_name_table.get(key))
             k += 1
     
     return total_n

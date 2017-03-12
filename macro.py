@@ -18,7 +18,7 @@ if __name__ == '__main__':
     start_time = time.clock()
     
     #input file
-    fo = open("programs/prog5.txt","r")
+    fo = open("programs/prog2.txt","r")
     
     lines = fo.readlines()
     fo.close()

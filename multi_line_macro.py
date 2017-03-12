@@ -5,7 +5,6 @@ import settings as st
 #function to create entry in parameter list      
 def create_entry(line,entry,pos_para,key_para):
     
-    print(line)
     k=0
     # check if the parameter has value
     if(line==""):
