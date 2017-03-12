@@ -128,9 +128,9 @@ def parameter(line):
             print("Macro already defined : "+s)
             return '*'
         else:
-            st.parameter_name_table[s]=[st.parameter_name_table[s],entry]
+            st.parameter_name_table[s].append(entry)
     else:
-        st.parameter_name_table[s]=entry
+        st.parameter_name_table[s]=[entry]
     return(s,[pos_para,key_para])
 
 
@@ -148,7 +148,7 @@ def single_line_macro(t,pq, prnt):
             printf("Macro already defined : "+mname)
         else:
             st.macro_name_table[mname] = [[1],[0,0]]
-            st.macro_def_table[mname] = [pq]
+            st.macro_def_table[mname] = [[pq]]
             st.parameter_name_table[mname] = prnt[pq][prnt[pq].index(p[2]):-1]
             
     # macro with parameter        
@@ -169,14 +169,12 @@ def single_line_macro(t,pq, prnt):
         
         #if no error add macro in list
         if(mname[0] in st.macro_name_table):
-            x=st.macro_name_table[mname[0]][0][0]+1
-            y=st.macro_name_table[mname[0]][1]
-            print(y)
-            st.macro_name_table[mname[0]]=[[x],y,mname[1]]
-            st.macro_def_table[mname[0]]=[st.macro_def_table[mname[0]],[pq]]
+            st.macro_name_table[mname[0]][0][0]=st.macro_name_table[mname[0]][0][0]+1
+            st.macro_name_table[mname[0]].append(mname[1])
+            st.macro_def_table[mname[0]].append([pq])
         else:
             st.macro_name_table[mname[0]]=[[1],mname[1]]
-            st.macro_def_table[mname[0]]=[pq]
+            st.macro_def_table[mname[0]]=[[pq]]
     return(pq)
 
 
@@ -196,18 +194,23 @@ def multi_line_macro(lines,t,pq):
         #print("Error in macro definition")
         return '*'
     pq=pq+1
-    
+    abc=0
     #if no error add macro in list
-    while(lines[pq]!="$$"):
-        pq=pq+1
+    while(abc>=0):
+    	if(lines[pq]==""):
+    		pass
+    	elif(lines[pq].split()[0]=="$macd"):
+    		abc+=1
+    	elif(lines[pq].split()[0]=="$$"):
+    		abc-=1
+    	pq+=1
+    pq-=1  
     if(mname[0] in st.macro_name_table):
-        x=st.macro_name_table[mname[0]][0][0]+1
-        y=st.macro_name_table[mname[0]][1]
-        print(y)
-        st.macro_name_table[mname[0]]=[[x],y,mname[1]]
-        st.macro_def_table[mname[0]]=[st.macro_def_table[mname[0]],[k,pq]]
+        st.macro_name_table[mname[0]][0][0]=st.macro_name_table[mname[0]][0][0]+1
+        st.macro_name_table[mname[0]].append(mname[1])
+        st.macro_def_table[mname[0]].append([k,pq])
     else:
         st.macro_name_table[mname[0]]=[[1],mname[1]]
-        st.macro_def_table[mname[0]]=[k,pq]
+        st.macro_def_table[mname[0]]=[[k,pq]]
     return(pq)
 

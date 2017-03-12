@@ -18,7 +18,7 @@ if __name__ == '__main__':
     start_time = time.clock()
     
     #input file
-    fo = open("prog2.txt","r")
+    fo = open("prog3.txt","r")
     
     lines = fo.readlines()
     fo.close()
@@ -96,7 +96,12 @@ if __name__ == '__main__':
         pq=pq+1
 
 
-    
+    print("macro name table : ")
+    print(st.macro_name_table)
+    print("macro def table : ")
+    print(st.macro_def_table)
+    print("parameter name table : " )
+    print(st.parameter_name_table)
     '''************************ Replace all macros used ************************'''
     
     #tracks line index

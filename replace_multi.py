@@ -12,8 +12,8 @@ def replace_multi_line_macro(actual_par, i, prnt, key, lines):
     for c in prnt[i][:ix]:
         if( c == '\t'):
             tab_len += 1
-        else:
-            space_len += 1
+        #else:
+            #space_len += 1
     
     #form the indentation string
     idtn_str = '\t'*tab_len + ' '*space_len
