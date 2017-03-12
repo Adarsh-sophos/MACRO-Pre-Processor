@@ -1,0 +1,7 @@
+$macd  SUM(a,b,c) sum3( b, c)
+$macd ...
+sum3( x , y )
+total=x+y
+print(total)
+$$
+SUM(5,10,20)

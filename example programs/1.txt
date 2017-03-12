@@ -2,4 +2,4 @@ $macd   A 10
 $macd  B(a) print(“The value of parameter is “ + a)
 print(“The two defined macros will be called here “)
 B(20)
-print(“Macro A has value “+A)
+print(“Macro a has value “+A)
