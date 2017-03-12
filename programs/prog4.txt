@@ -1,0 +1,19 @@
+--$macd A 10
+$macd B 90
+
+$if A
+hello
+2 3 4
+
+$elif B
+elif
+mnit
+
+$end
+
+$if C
+hiii
+
+hahah
+
+$end
