@@ -8,6 +8,8 @@ def create_entry(line,entry,pos_para,key_para):
     print(line)
     k=0
     # check if the parameter has value
+    if(line==""):
+        return(entry,pos_para,key_para)
     if('=' in line):
         # getting parameter name
         while(line[k]!='='):
