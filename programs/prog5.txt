@@ -1,4 +1,8 @@
-$macd A 10
-$macd B(a) print("The value of parameter a and a is "+ a)
-B(20)
-print("Macro A has value ", A)
+$macd ...
+MAX
+macro
+pre
+processor
+$$
+
+MAX

@@ -2,38 +2,6 @@
 
 
 
-
-
-
-
-
-
-
-void main()
-{
-	int a,b,c,d;
-		
-	print the sumdad
-	helo+newone+9+34
-	
-	b = hello 5
-	you are undefined
-	1 + 8 + 5
-
-	c = 5 + 1 + 91
-
-	d = print the sumdad
-	a+b
-	
-	z = print the sumdad
-	helo+newone+2
-
-	e = 3 + 1 + 91
-
-	f = 10
-
-	g = printf("B a A sum %d",abcd);
-
-	h = 3>2?3:2
-}
-
+print("This SUM has 5 parameters : "+ 10 + 20 + 30 + 40 + 3);
+print("This sum has no parameters");
+print("This sum has 3 parameters :" + 10 + 20 + 30);
