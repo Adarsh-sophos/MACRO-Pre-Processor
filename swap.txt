@@ -1,0 +1,17 @@
+$macd ...
+swap(a,b,c,d,e,f,g,h)
+swap(a,b,c,d)
+swap(e,f,g,h)
+print("Swap with 8 parameters call swap with 4 parameters twice")
+$$
+$macd ...
+swap(w,x,y,z)
+swap(w,x)
+swap(y,z)
+print("Swap with 4 parameters call swap with 2 parameters twice")
+$$
+$macd ...
+swap(m,n)
+print("swapwith 2 parameters")
+$$
+swap(1,2,3,4,5,6,7,8)
