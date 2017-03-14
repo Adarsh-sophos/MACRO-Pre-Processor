@@ -18,7 +18,7 @@ if __name__ == '__main__':
     start_time = time.clock()
     
     #input file
-    fo = open("swap.txt","r")
+    fo = open("13.txt","r")
     
     lines = fo.readlines()
     fo.close()
@@ -96,7 +96,12 @@ if __name__ == '__main__':
         pq=pq+1
 
     
-
+    print("macro name table : ")
+    print(st.macro_name_table)
+    print("macro def table : ")
+    print(st.macro_def_table)
+    print("parameter name table : " )
+    print(st.parameter_name_table)
     '''************************ Replace all macros used ************************'''
     
     #tracks line index
@@ -216,7 +221,7 @@ if __name__ == '__main__':
     print("parameter name table : " )
     print(st.parameter_name_table)
     #output file
-    fp = open("swap.txt","w")
+    fp = open("13o.txt","w")
     
     for s in prnt:
         fp.write(s)

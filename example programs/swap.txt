@@ -1,18 +1,18 @@
 $macd ...
 	SWAP(a,b,c,d,e,f,g,h)
-	SWAP(a,b,c,d)
-	SWAP(e,f,g,h)
+		SWAP(a,b,c,d)
+		SWAP(e,f,g,h)
 $$
 
 $macd ...
 	SWAP(a,b,c,d)
-	SWAP(a,b)
-	SWAP(c,d)
+		SWAP(a,b)
+		SWAP(c,d)
 $$
 
 $macd ...
 	SWAP(a,b)
-	b,a
+		b,a
 $$
 
 SWAP(1,2,3,4,5,6,7,8)

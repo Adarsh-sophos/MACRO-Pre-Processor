@@ -131,11 +131,15 @@ def parameter(line):
         if(st.parameter_name_table[s]==None):
             print("Macro already defined : "+s)
             return '*'
-        elif(len(st.parameter_name_table[s])==len(entry)):
-            print("Macro already defined : "+s)
-            return '*'
-        else:
-            st.parameter_name_table[s].append(entry)
+        l=len(st.parameter_name_table[s])
+        i=0
+        while(i<l):
+            if(len(st.parameter_name_table[s][i])==len(entry)):
+                print("Macro already defined : "+s)
+                return '*'
+            i+=1
+        
+        st.parameter_name_table[s].append(entry)
     else:
         if(flag==1):
             st.parameter_name_table[s]=None
