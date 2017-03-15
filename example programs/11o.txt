@@ -1,13 +1,45 @@
-#include<stdio.200>
-Void main(){
+#include<stdio.80>
 
-
-		Printf(“h and d are defined");
-
-
+void main()
+{
 
 
 
 
 
+						printf("j is defined");
+						printf("i am in j");
+
+
+
+
+
+
+
+	
+
+
+		
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 

@@ -1,7 +1,0 @@
-print("swapwith 2 parameters")
-print("swapwith 2 parameters")
-print("Swap with 4 parameters call swap with 2 parameters twice")
-swap(5,6)
-swap(7,8)
-print("Swap with 4 parameters call swap with 2 parameters twice")
-print("Swap with 8 parameters call swap with 4 parameters twice")

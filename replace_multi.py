@@ -125,9 +125,12 @@ def create_parameter_table(key, s):
                 flag_a = True
         if(not flag_a):
             for iq in range(1,def_n+1):
-                if(name_tab[iq][0] + name_tab[iq][1] >= pos_arg+key_arg):
+                if( name_tab[iq][0] + name_tab[iq][1] == pos_arg + key_arg):
                     name_index = iq
-                    flag_a = True
+                    flag_a = True                
+                '''if(name_tab[iq][0] + name_tab[iq][1] >= pos_arg+key_arg):
+                    name_index = iq
+                    flag_a = True'''
     else:
         name_index = 1
         flag_a = True
@@ -139,8 +142,8 @@ def create_parameter_table(key, s):
     #check for number of positional arguments
     n_of_pos_par = st.macro_name_table.get(key)[name_index][0]   
     
-    if( n_of_pos_par > len_p ):
-        print("Invalid no of arguments for macro "+key)
+    #if( n_of_pos_par > len_p ):
+    #    print("Invalid no of arguments for macro "+key)
     
     opt_arg = len(p)-1
     if(s==""):
@@ -171,6 +174,7 @@ def create_parameter_table(key, s):
         
         #if key's value in defination is None, then store the called argument
         if( var_value == None ):
+            #print(par_list)
             apt[var_key] = p[i].strip()
         
         #else check for their default or passed value
@@ -228,7 +232,7 @@ def nested_macro(m,n,lines,prnt):
                     #replace macro with its defination
                     ab = replace_multi_line_macro(actual_par, i, prnt, key, lines, n_index)
                     total_n += ab
-                    cd = nested_macro(m,ab+1,lines,prnt)
+                    cd = nested_macro(i,ab+1,lines,prnt)
                     total_n += cd
                     i = i + cd
                     i = i + ab + 1

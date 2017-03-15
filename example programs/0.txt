@@ -1,22 +1,18 @@
-<# 	Here same macro ‘sum’ is defined 
-	multiple times 	with different number of parameters
-	#>
-
 $macd ...
-SUM(a,b,c=1,d=2,e=3)
-print("This SUM has 5 parameters : "+ a + b + c + d + e);
+	SWAP(a,b,c,d,e,f,g,h)
+		SWAP(a,b,c,d)
+		SWAP(e,f,g,h)
 $$
 
 $macd ...
-SUM()
-print("This sum has no parameters");
+	SWAP(a,b,c,d)
+		SWAP(a,b)
+		SWAP(c,d)
 $$
 
 $macd ...
-SUM(a,b,c)
-print("This sum has 3 parameters :" + a + b + c);
+	SWAP(a,b)
+		b,a
 $$
 
-SUM(10,20,30,40)
-SUM()
-SUM(10,20,30)
+SWAP(1,2,3,4,5,6,7,8)

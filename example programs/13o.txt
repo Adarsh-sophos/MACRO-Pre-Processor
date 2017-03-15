@@ -1,0 +1,7 @@
+
+
+
+
+print("This sum has 5 parameters : "+ str(10 + 20 + 30 + 40 + 50));
+print("This sum has 3 parameters :" + str(10 + 20 + 30));
+print("This sum has a default parameters"+str(50));
