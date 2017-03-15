@@ -1,7 +1,11 @@
 
 
 
-
-print("This sum has 5 parameters : "+ str(10 + 20 + 30 + 40 + 50));
-print("This sum has 3 parameters :" + str(10 + 20 + 30));
-print("This sum has a default parameters"+str(50));
+void main()
+{
+	printf("This sum has 5 parameters : ");
+	printf("%d %d %d %d %d", 10,20,30,40,50);
+	printf("This sum has 3 parameters :");
+	printf("%d %d %d", 10,20,30);
+	printf("This sum has no parameters");
+}

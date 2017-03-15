@@ -1,5 +1,8 @@
 #include<stdio.h>
-Void main(){
-printf(“macro h is %d“,80 );
-printf(“macro min is %d“,10 );
+
+
+Void main()
+{
+	printf("macro H is %d", 80 );
+	printf("macro MIN is %d", 10 );
 }

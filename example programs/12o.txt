@@ -1,6 +1,7 @@
+
 SECTION .data
 
-	Greet:  db “Hello !!”,10,0
+	Greet:  db "Hello !!",10,0
 
 
 
@@ -8,6 +9,7 @@ SECTION .data
 SECTION .text
 extern printf
 global main
+
 main:
 	push ebp
 	mov ebp,esp

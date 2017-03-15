@@ -3,16 +3,18 @@ $macd   g 10
 $macd   h 200
 $macd   e 30
 $macd   d 0
-Void main(){
-$if d
-	$if h
-		Printf(“h and d are defined");
+
+Void main()
+{
+	$if d
+		$if h
+			printf("h and d are defined");
+		$else
+			printf("d is defined");
+		$end
+	$elif e
+		printf("e is defined");
 	$else
-		Printf(“d is defined");
-	$end
-$elif e
-	Printf(“e is defined	);
-$else
-	Printf(“d and e are not defined “);
-$end		
+		printf("d and e are not defined");
+	$end		
 }

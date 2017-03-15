@@ -1,11 +1,16 @@
 $macd ...
 sum(a,b,c=5)
-printf(“the sum is “);
-$macd ...
-sum12(a,b,c,d)	
-printf(“this is nested macro definition “);
-int x=a + b + c+d;
+printf("the sum is");
+	$macd ...
+	sum12(a,b,c,d)	
+		printf("this is nested macro definition");
+		int x=a + b + c+d;
+	$$
+	int x=a+b+c;
 $$
-int x=a+b+c;
-$$
-sum12(5,10,2,6)
+
+void main()
+{
+	sum12(5,10,2,6)
+	printf("%d", x);
+}

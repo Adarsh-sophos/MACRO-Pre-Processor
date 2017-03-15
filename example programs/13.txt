@@ -1,21 +1,23 @@
-<# 	Here same macro ‘sum’ is defined 
-	multiple times 	with different number of parameters	#>
-
 $macd ...
 sum(a,b,c=1,d=2,e=3)
-	print("This sum has 5 parameters : "+ str(a + b + c + d + e));
+	printf("This sum has 5 parameters : ");
+	printf("%d %d %d %d %d", a,b,c,d,e);
 $$
 
 $macd ...
-sum(a=10)
-	print("This sum has a default parameters"+str(a));
+	sum(a=10)
+	printf("This sum has no parameters");
 $$
 
 $macd ...
 sum(a,b,c)
-	print("This sum has 3 parameters :" + str(a + b + c));
+	printf("This sum has 3 parameters :");
+	printf("%d %d %d", a,b,c);
 $$
 
-sum(10,20,30,40,50)
-sum(10,20,30)
-sum(50)
+void main()
+{
+	sum(10,20,30,40,50)
+	sum(10,20,30)
+	sum(50)
+}

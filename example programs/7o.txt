@@ -1,1 +1,2 @@
-print(“Macro has value “+10)
+
+print("Macro has value "+ str(10) )

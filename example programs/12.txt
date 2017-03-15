@@ -1,14 +1,16 @@
 $macd   g test
+
 SECTION .data
 $if g
-	Greet:  db “Hello !!”,10,0
+	Greet:  db "Hello !!",10,0
 $else
-	Greet:  db  “No greeting”,10,0
+	Greet:  db  "No greeting",10,0
 $end
 
 SECTION .text
 extern printf
 global main
+
 main:
 	push ebp
 	mov ebp,esp

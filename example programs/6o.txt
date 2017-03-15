@@ -1,9 +1,12 @@
+
 SECTION .data
 a: dd 6
 stm : db "a=%d", 10, 0 
+
 SECTION .text
 extern printf
 global main
+
 main:
 	push ebp
 	mov ebp,esp

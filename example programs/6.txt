@@ -1,13 +1,16 @@
 $macd  ... 
 stmfora( )
-a: dd 6
-stm : db "a=%d", 10, 0 
+	a: dd 6
+	stm : db "a=%d", 10, 0 
 $$
+
 SECTION .data
 stmfora( )
+
 SECTION .text
 extern printf
 global main
+
 main:
 	push ebp
 	mov ebp,esp

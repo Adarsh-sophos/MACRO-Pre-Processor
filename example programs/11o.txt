@@ -1,8 +1,10 @@
 #include<stdio.200>
-Void main(){
+
+Void main()
+{
 
 
-		Printf(“h and d are defined");
+			printf("h and d are defined");
 
 
 

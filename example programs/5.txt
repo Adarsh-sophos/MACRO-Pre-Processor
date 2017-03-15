@@ -1,9 +1,10 @@
 #include<stdio.h>
 $macd ...
-	sum(c, k, a=helo, b=newone)
+	sum(c, k, a=13, b=82)
 	printf("The sum is ");
 	int x = a+b+c+k;
 $$
+
 void main()	
 {
 	sum(10,20,30)

@@ -1,8 +1,11 @@
+
 SECTION .data
 stm : db "a=%d", 10, 0 
+
 SECTION .text
 extern printf
 global main
+
 main:
 	push ebp
 	mov ebp,esp
@@ -11,4 +14,4 @@ main:
 	add esp,8
 	mov esp, ebp
 	pop ebp
-ret
+	ret

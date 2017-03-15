@@ -1,0 +1,13 @@
+$macd ...
+ADD(x=2, y=3)
+	int a = x;
+	int b = y;
+	printf("%d", x*2/y+x+x*y);
+$$
+
+int main()
+{
+	ADD(1)
+	pritnf("a=%d",a);
+	return 0;
+}

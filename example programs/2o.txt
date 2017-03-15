@@ -1,5 +1,8 @@
 #include<stdio.h>
-void main(){
-printf(“lets greet our user !! Hello user . “); 
-int Maximum=10>20?10:20;
+
+
+void main()
+{
+	printf("lets greet our user !! Hello user");
+	int maximum = 10>20?10:20;
 }

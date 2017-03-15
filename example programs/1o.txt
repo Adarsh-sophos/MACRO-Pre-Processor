@@ -1,3 +1,4 @@
+
 print("The two defined macros will be called here ")
-print("The value of parameter is " + 20)
-print("Macro a has value "+10)
+print("The value of parameter is " + str(20))
+print("Macro a has value "+ str(10) )

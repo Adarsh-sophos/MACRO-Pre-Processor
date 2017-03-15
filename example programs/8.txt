@@ -1,9 +1,12 @@
 #include<stdio.h>
 --Using single line macro to comment some definitions
  --$macd F 60
+
 $macd H 80
 $macd MIN 10
-Void main(){
-printf(“macro h is %d“,H );
-printf(“macro min is %d“,MIN );
+
+void main()
+{
+	printf("macro H is %d", H );
+	printf("macro MIN is %d", MIN );
 }

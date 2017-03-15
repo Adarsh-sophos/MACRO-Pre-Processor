@@ -1,10 +1,13 @@
 $macd    stmfora  db "a=%d", 10, 0 
+
 SECTION .data
 a: dd 6
 stm: stmfora
+
 SECTION .text
 extern printf
 global main
+
 main:
 	push ebp
 	mov ebp,esp
