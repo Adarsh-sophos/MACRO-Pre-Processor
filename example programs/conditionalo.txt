@@ -1,0 +1,44 @@
+#include<stdio.80>
+
+void main()
+{
+
+
+
+
+
+						printf("j is defined");
+						printf("i am in j");
+
+
+
+
+
+
+
+	
+
+
+		
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

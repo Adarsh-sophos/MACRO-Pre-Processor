@@ -1,55 +1,18 @@
 #include<stdio.h>
-$macd a 10
-$macd b 20
---$macd c 30
-$macd d 40
---$macd e 50
---$macd f 60
---$macd g 70
-$macd h 80
-$macd i 90
-$macd j 100
-
-void main()
-{
-	$if a
-		$if d
-			$if h
-				$if i
-					$if j
-						printf("j is defined");
-						printf("i am in j");
-					$end
-				$end
-			$end
-
-		$elif e
-			printf("e is defined");
-			printf("i am e");
-	
-		$else
-			printf("i am in else of first if");
-		
-		$end
-
-
-	$elif c
-		$if f
-			printf("i am in f");
-			printf(f is defined);
-	
-		$else
-			printf("nothing is defined");
-			printf("i am in 2nd elif condition");
-		$end
-
+$macd   g 10
+$macd   h 200
+$macd   e 30
+$macd   d 0
+Void main(){
+$if d
+	$if h
+		Printf(“h and d are defined");
 	$else
-		$if g
-			printf("i am in g");
-		$else
-			printf("do nothing");
-		$end
+		Printf(“d is defined");
 	$end
-
+$elif e
+	Printf(“e is defined	);
+$else
+	Printf(“d and e are not defined “);
+$end		
 }
-

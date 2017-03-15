@@ -1,38 +1,8 @@
-#include<stdio.80>
-
-void main()
-{
+#include<stdio.200>
+Void main(){
 
 
-
-
-
-						printf("j is defined");
-						printf("i am in j");
-
-
-
-
-
-
-
-	
-
-
-		
-
-
-
-
-
-
-
-	
-
-
-
-
-
+		Printf(“h and d are defined");
 
 
 
@@ -42,4 +12,3 @@ void main()
 
 
 }
-

@@ -16,7 +16,7 @@ from tokens import create_tokens
 if __name__ == '__main__':
         
     start_time = time.clock()
-    
+    print(Enter file name :)
     input_file = input()
     #input file
     fo = open("example programs/"+input_file,"r")
