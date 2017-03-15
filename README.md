@@ -5,7 +5,7 @@
 
 DOCUMENTATION For SOPHOS **A Multi-Purpose Macro Pre-processor**
 
-> Developed By :-
+> Developed By
 
 > Adarsh Kumar Jain (2015UCP1547)
 
@@ -22,13 +22,11 @@ Note that a macro is not the same as a function : functions require special inst
 
 
 ## What is a Macro Pre-processor ?
-
 -	Preprocessor is just a tool that allows us to use macros in a program and instructs the compiler to do required pre-processing before the actual compilation.
 -	It replaces each macro invocation (call)  with the corresponding sequence of statements (expansion) .
 
  
 ## Why SOPHOS ?
-
 - SOPHOS is a general purpose macro pre-processor in the sense that is not tied to or integrated with a particular language or piece of software.
 - It is developed in python language and it is suitable for both low level language (like NASM) and high level languages (like Python and C).
 
@@ -83,7 +81,8 @@ Syntax :
 ### Multi Line Comments  :		
 * using the symbols **<# ....  #>**
 * *Syntax* :		
- ```
+```
+
                     <#   this is
                          multi line
                          comment		#>
@@ -93,6 +92,7 @@ Syntax :
 
 Syntax :		
 ```
+
             	$if   < expression / macro >
                   	$if   < expression / macro >
                         	$if   < expression / macro >
@@ -120,18 +120,21 @@ Syntax :
 - ***macro***  :		to set statements by checking if a macro exists or not
  
 <br/>
+
 # Some sample macro examples depicting specific features
+
 <br/>
+
 ## Single line macro :
 
 ### Example  for Python
 ```
 $macd   A 10
-$macd  B(a) print(“The value of parameter is “ + a)
+$macd  B(a) print("The value of parameter is " + a)
 
-print(“The two defined macros will be called here “)
+print("The two defined macros will be called here")
 B(20)
-print(“Macro A has value “+A)
+print("Macro A has value"+A)
 ```
 
 ### Example  for  C
@@ -139,18 +142,18 @@ print(“Macro A has value “+A)
 #include<stdio.h>
 
 $macd   MAX(x=0,y) x>y?x:y;
-$macd  hello printf(“lets greet our user !! Hello user . “); 
+$macd  hello printf("lets greet our user !! Hello user."); 
 
 void main()
 {
-	hello
+	printf("Hello")
 	int Maximum=MAX(10,20)
 }
 ```
 
 ### Example  for  NASM
 ```
-$macd    stmfora  db "a=%d", 10, 0 
+$macd stmfora db "a=%d", 10, 0 
 
 SECTION .data
 a: dd 6
@@ -172,18 +175,19 @@ main:
 	ret
 ```
 <br/>
+
 ## Multi Line Macro  :
 
 ### Example  for Python
 ```
 $macd ...
 	sum1(a,b,c=5)
-	print(“sum is”)
-	x=a + b + c
-	print(x)
+		print("sum is")
+		x=a + b + c
+		print(x)
 $$
 
-print(“Program to calculate sum of three numbers “ )
+print("Program to calculate sum of three numbers")
 sum1(10 , 27 )
 ```
 
@@ -193,8 +197,8 @@ sum1(10 , 27 )
 
 $macd ...
 	sum(c, k, a=helo, b=newone)
-	printf("The sum is ");
-	int x = a+b+c+k;
+		printf("The sum is ");
+		int x = a+b+c+k;
 $$
 
 void main()	
@@ -207,9 +211,9 @@ void main()
 ### Example  for  NASM
 ```
 $macd  ... 
-	stmfora( )
-	a: dd 6
-	stm : db "a=%d", 10, 0 
+	stmfora()
+		a: dd 6
+		stm : db "a=%d", 10, 0 
 $$
 
 SECTION .data
@@ -232,6 +236,7 @@ ret
 ```
 
 </br>
+
 ## Single  Line  And  Multi  Line  Comments  :
 
 ### Example  for Python
@@ -256,20 +261,20 @@ print(“Macro  has value “+A)
 $macd H 80
 $macd MIN 10
 
-Void main()
+void main()
 {
-	printf(“macro h is %d“,H );
-	printf(“macro min is %d“,MIN );
+	printf("macro h is %d",H );
+	printf("macro min is %d",MIN );
 }
 ```
 
 ### Example  for  NASM
 ```
 $macd  ... 
-stmt(  )
-<#	 a: dd 6  
-commented so not replaced   #>
-stm : db "a=%d", 10, 0 
+	stmt()
+		<#	 a: dd 6  
+	 		commented so not replaced   #>
+		stm : db "a=%d", 10, 0 
 $$
 
 SECTION .data
@@ -290,6 +295,7 @@ main:
 ```
 
 <br/>
+
 ## Conditional macro :
 
 ### Example  For Python
@@ -298,16 +304,16 @@ $macd e 50
 --$macd d 60
 
 $if d			
-print(“d  is defined “)
-print(“I am in d“)
+print("d  is defined")
+print("I am in d")
 
 $elif e
-print(“e  is defined “)
-print(“I am in e“)
+print("e  is defined")
+print("I am in e")
 
 $else
-Print(“Both d and e are not defined “)	
-print(“I am not in d and e“)
+Print("Both d and e are not defined")	
+print("I am not in d and e")
 
 $end
 ```
@@ -323,12 +329,12 @@ Void main()
 {
 	$if d
 		$if h
-			Printf(“h and d are defined");
+			Printf("h and d are defined");
 		$else
-			Printf(“d is defined");
+			Printf("d is defined");
 		$end
 	$elif e
-		Printf(“e is defined	);
+		Printf("e is defined");
 	$else
 		Printf(“d and e are not defined “);
 	$end
@@ -338,13 +344,13 @@ Void main()
 
 ### Example For NASM
 ```
-$macd   g test
+$macd g test
 
 SECTION .data
 $if g
-	Greet:  db “Hello !!”,10,0
+	Greet:  db "Hello !!",10,0
 $else
-	Greet:  db  “No greeting”,10,0
+	Greet:  db "No greeting",10,0
 $end
 
 SECTION .text
@@ -363,6 +369,7 @@ ret
 ```
 
 <br/>
+
 ## Macro Overloading  :
 *This macro preprocessor allows macro overloading that is same name macros can be created if they have different number of parameters. Thus same name macro can have multiple definitions.*
 
@@ -371,42 +378,38 @@ ret
 <# 	Here same macro ‘sum’ is defined multiple times with different number of parameters		 #>
 
 $macd ...
-	sum(a,,b,,c=1,d=2,e=3)
-	printf(“This sum has 5 parameters”);
+	sum(a,b,c=1,d=2,e=3)
+		print("This sum has 5 parameters : "+ a + b + c + d + e);
 $$
 
 $macd ...
-	sum( )
-	printf(“This sum has no parameters”);
-$$
-
-$macd ...
-	sum(a=helo,b=newone)
-	printf(“This sum has 2 parameters”);
+	sum(a=10)
+		print("This sum has no parameters");
 $$
 
 $macd ...
 	sum(a,b,c)
-	printf(“This sum has 3 parameters”);
+		print("This sum has 3 parameters :" + a + b + c);
 $$
 
-sum(2,4,7)
-sum( ,  )
-sum(5, 4, , , )
-sum( )
+sum(10,20,30,40,50)
+sum(10,20,30)
+sum(50)
+
 ```
 <br/>
+
 ## Nested Macro Definition And Calls
 
 ### Calling a macro inside definition of another (Example for python)
 
 ```
-$macd  SUM(a,b,c) sum3( b, c) print(a)
+$macd  SUM(a,b,c) sum3(b,c) print(a)
 
 $macd ...
-sum3( x , y )
-total=x+y
-print(total)
+	sum3(x, y)
+		total=x+y
+		print(total)
 $$
 
 SUM(5,10,20)
@@ -416,16 +419,36 @@ SUM(5,10,20)
 ```
 $macd ...
 	sum(a,b,c=5)
-	printf(“the sum is “);
+	printf("the sum is");
 	
 	$macd ...
 		sum12(a,b,c,d)	
-		printf(“this is a nested macro definition “);
-		int x=a + b + c+d;
+			printf("this is a nested macro definition");
+			int x=a + b + c+d;
 	$$
 	
 	int x=a+b+c;
 $$
 
 sum12(5,10,2,6)
+```
+
+### Another example for nested call
+```
+
+$macd ...
+	SWAP(a,b,c,d,e,f,g,h)
+		SWAP(a,b,c,d)
+		SWAP(e,f,g,h)
+$$
+$macd ...
+	SWAP(a,b,c,d)
+		SWAP(a,b)
+		SWAP(c,d)
+$$
+$macd ...
+	SWAP(a,b)
+		b,a
+$$
+SWAP(1,2,3,4,5,6,7,8)
 ```
